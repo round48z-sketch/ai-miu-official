@@ -794,6 +794,7 @@ h3 {
 }
 
 .game-piece__image {
+  position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   margin-bottom: 18px;

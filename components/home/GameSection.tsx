@@ -16,9 +16,9 @@ export function GameList({ heading = "h3" }: { heading?: "h2" | "h3" }) {
               <Image
                 src={game.image.src}
                 alt={game.image.alt}
-                width={game.image.width}
-                height={game.image.height}
+                fill
                 sizes="(min-width: 980px) 32vw, 88vw"
+                style={{ objectFit: "cover" }}
               />
             </div>
             <p className="kicker">Mini Game</p>

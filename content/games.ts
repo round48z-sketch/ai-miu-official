@@ -20,8 +20,8 @@ export const games: GameItem[] = [
     image: {
       src: "/images/games/miu-blocks.jpg",
       alt: "MIU ♡ BLOCKS",
-      width: 682,
-      height: 1024,
+      width: 880,
+      height: 1168,
     },
   },
   {
@@ -32,8 +32,8 @@ export const games: GameItem[] = [
     image: {
       src: "/images/games/miu-breaker.jpg",
       alt: "MIU BREAKER",
-      width: 711,
-      height: 1024,
+      width: 1024,
+      height: 1536,
     },
   },
   {
@@ -44,8 +44,8 @@ export const games: GameItem[] = [
     image: {
       src: "/images/games/miu-pops.jpg",
       alt: "MIU ♡ POPS",
-      width: 453,
-      height: 680,
+      width: 941,
+      height: 1672,
     },
   },
 ];
