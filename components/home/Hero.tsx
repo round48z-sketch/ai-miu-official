@@ -13,6 +13,8 @@ export function Hero() {
         sizes="100vw"
         className="hero__image"
       />
+      <div className="hero__glow" aria-hidden="true" />
+      <div className="hero__sparkles" aria-hidden="true" />
       <div className="hero__shade" />
       <div className="hero__copy">
         <p className="hero__ruby">Official</p>
