@@ -18,11 +18,19 @@ export function Hero() {
       <div className="hero__glow" aria-hidden="true" />
       <div className="hero__sparkles" aria-hidden="true" />
       <div className="hero__shade" />
+      <div className="hero__motif" aria-hidden="true">
+        <span className="motif motif--star a" />
+        <span className="motif motif--heart b" />
+        <span className="motif motif--star c" />
+        <span className="motif motif--line d" />
+      </div>
       <div className="hero__brand">
         <p className="hero__site">Official Web Site</p>
         <h1>
           <span className="hero__ja">AIみう</span>
-          <span className="hero__roma"> / miu</span>
+          <span className="hero__roma">
+            <span className="hero__slash">/</span>miu
+          </span>
         </h1>
         <p className="hero__catch">{profile.catch}</p>
         <nav className="hero__sns" aria-label="公式SNS">

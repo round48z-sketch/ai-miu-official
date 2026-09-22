@@ -1,10 +1,25 @@
 import type { Metadata, Viewport } from "next";
+import { Cormorant_Garamond, Noto_Serif_JP } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { getSiteUrl, siteConfig } from "@/content/site";
 import { buildJsonLd } from "@/lib/metadata";
 import "./globals.css";
+
+const heroMincho = Noto_Serif_JP({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-mincho",
+  display: "swap",
+});
+
+const heroSerif = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-hero-serif",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -33,7 +48,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={`${heroMincho.variable} ${heroSerif.variable}`}>
       <body>
         <JsonLd data={buildJsonLd()} />
         <a className="skip-link" href="#main">

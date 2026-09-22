@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/PageIntro";
-import { snsLinks, siteConfig } from "@/content/site";
+import { SnsCards } from "@/components/home/SnsSection";
+import { siteConfig } from "@/content/site";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -27,18 +28,7 @@ export default function ContactPage() {
           ) : (
             <p>当面は公式SNSのダイレクトメッセージよりご連絡ください。</p>
           )}
-          <ul className="sns-row">
-            {snsLinks
-              .filter((item) => item.href)
-              .map((item) => (
-                <li key={item.name}>
-                  <a href={item.href ?? undefined} target="_blank" rel="noopener noreferrer">
-                    {item.name}
-                    <small>{item.handle}</small>
-                  </a>
-                </li>
-              ))}
-          </ul>
+          <SnsCards linkedOnly />
         </div>
       </div>
     </article>

@@ -20,12 +20,12 @@ export function Reveal({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight) {
           setVisible(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.06, rootMargin: "40px 0px -40px 0px" },
     );
 
     observer.observe(node);
