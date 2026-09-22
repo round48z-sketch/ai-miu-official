@@ -3,7 +3,6 @@ import { GalleryTeaser } from "@/components/home/GalleryTeaser";
 import { GameSection } from "@/components/home/GameSection";
 import { GoodsSection } from "@/components/home/GoodsSection";
 import { Hero } from "@/components/home/Hero";
-import { MovieSection } from "@/components/home/MovieSection";
 import { MusicFeature } from "@/components/home/MusicFeature";
 import { ProfileTeaser } from "@/components/home/ProfileTeaser";
 import { SnsSection } from "@/components/home/SnsSection";
@@ -43,7 +42,6 @@ export default function HomePage() {
       <ProfileTeaser />
       <MusicFeature />
       <GalleryTeaser />
-      <MovieSection />
       <GameSection />
       <GoodsSection />
       <SnsSection />

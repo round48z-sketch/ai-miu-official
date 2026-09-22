@@ -4,7 +4,7 @@ export const siteConfig = {
   logo: "AIみう",
   tagline: "かわいく、やさしく、透明に。",
   description:
-    "AIみう公式サイト。透明感のある可愛いAIアイドル／アーティスト、AIみうの最新情報・音楽・写真・ムービー・ゲーム・グッズをお届けします。",
+    "AIみう公式サイト。透明感のある可愛いAIアイドル／アーティスト、AIみうの最新情報・音楽・写真・ゲーム・グッズをお届けします。",
   locale: "ja_JP",
   defaultOgImage: "/images/og.jpg",
   email: "",
