@@ -8,6 +8,8 @@ import { navItems, siteConfig } from "@/content/site";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     setOpen(false);
@@ -20,9 +22,26 @@ export function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!isHome) {
+      setScrolled(false);
+      return;
+    }
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 72);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
   return (
     <>
-      <header className="site-header">
+      <header
+        className={`site-header${isHome ? " is-overlay" : ""}${scrolled ? " is-scrolled" : ""}`}
+      >
         <div className="site-header__inner">
           <Link href="/" className="logo" onClick={() => setOpen(false)}>
             {siteConfig.logo}
