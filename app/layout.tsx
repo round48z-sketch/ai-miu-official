@@ -16,7 +16,7 @@ const heroMincho = Noto_Serif_JP({
 
 const heroSerif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["300", "400", "500"],
   variable: "--font-hero-serif",
   display: "swap",
 });
