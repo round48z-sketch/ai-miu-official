@@ -27,7 +27,9 @@ export function Hero() {
       <div className="hero__brand">
         <p className="hero__site">Official Web Site</p>
         <h1>
-          <span className="hero__ja">AIみう</span>
+          <span className="hero__ja">
+            <span className="hero__ai">AI</span><span className="hero__name">みう</span>
+          </span>
           <span className="hero__roma">
             <span className="hero__slash">/</span>miu
           </span>
