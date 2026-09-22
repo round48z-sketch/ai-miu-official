@@ -17,8 +17,8 @@
   --display: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --hero-ja: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
   --hero-en: var(--font-hero-serif), "Palatino Linotype", Palatino, "Times New Roman", serif;
-  --hero-ink: #524c51;
-  --hero-soft: #6d656b;
+  --hero-ink: #6d4f5c;
+  --hero-soft: #8d6d79;
 }
 
 * {
@@ -369,50 +369,51 @@ h3 {
   z-index: 2;
   display: grid;
   justify-items: start;
-  gap: 8px;
+  gap: 5px;
   max-width: 22em;
   padding-right: 52px;
   color: var(--hero-ink);
   text-shadow:
-    0 0 22px rgba(255, 243, 248, 0.95),
-    0 0 10px rgba(255, 255, 255, 0.65);
+    0 0 20px rgba(255, 243, 248, 0.96),
+    0 0 14px rgba(255, 255, 255, 0.55),
+    0 0 28px rgba(233, 106, 155, 0.14);
   animation: fade-up 0.9s ease 0.2s both;
 }
 
 .hero__site {
-  margin: 0;
+  margin: 0 0 2px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-family: var(--hero-en);
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 300;
-  letter-spacing: 0.46em;
+  letter-spacing: 0.58em;
   text-transform: uppercase;
-  color: #b48496;
+  color: #c49aaa;
 }
 
 .hero__site::before {
   content: "";
-  width: 4px;
-  height: 4px;
-  background: #d4a3b4;
+  width: 3px;
+  height: 3px;
+  background: #e2b7c4;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  box-shadow: 0 0 6px rgba(233, 106, 155, 0.35);
-  opacity: 0.8;
+  box-shadow: 0 0 6px rgba(233, 106, 155, 0.28);
+  opacity: 0.75;
 }
 
 .hero__brand h1 {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 10px;
+  align-items: flex-end;
+  gap: 0 12px;
   font-family: var(--hero-ja);
-  font-size: clamp(36px, 10.5vw, 64px);
+  font-size: clamp(34px, 9.8vw, 58px);
   font-weight: 300;
-  letter-spacing: 0.06em;
-  line-height: 1.18;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
   color: var(--hero-ink);
   font-feature-settings: "palt";
   font-synthesis: none;
@@ -420,61 +421,66 @@ h3 {
 
 .hero__ja {
   position: relative;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .hero__ja::after {
   content: "";
   display: block;
-  width: 28px;
+  width: 22px;
   height: 1px;
-  margin-top: 8px;
+  margin-top: 7px;
   border-radius: 99px;
-  background: linear-gradient(90deg, rgba(233, 106, 155, 0.75), #c9b6ef 70%, transparent);
+  background: linear-gradient(90deg, rgba(233, 106, 155, 0.55), #d4c0ee 72%, transparent);
 }
 
 .hero__roma {
   display: inline-flex;
   align-items: baseline;
   gap: 0;
+  margin-bottom: 0.12em;
   font-family: var(--hero-en);
-  font-size: 0.36em;
+  font-size: 0.28em;
   font-weight: 300;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.56em;
   text-transform: lowercase;
   color: var(--hero-soft);
+  transform: translateY(0.22em);
 }
 
 .hero__slash {
-  margin-right: 0.42em;
+  margin-right: 0.46em;
   letter-spacing: 0;
   font-weight: 300;
-  opacity: 0.48;
+  color: #c48a9a;
+  opacity: 0.7;
 }
 
 .hero__catch {
-  margin: 4px 0 10px;
-  max-width: 20em;
-  font-size: 13px;
-  letter-spacing: 0.06em;
-  line-height: 1.8;
-  color: var(--copy);
+  margin: 2px 0 8px;
+  max-width: 22em;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  color: #a18490;
 }
 
 .hero__sns {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
-  margin-top: 4px;
+  gap: 6px 16px;
+  margin-top: 2px;
 }
 
 .hero__sns a {
-  font-family: var(--display);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-family: var(--hero-en);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.72;
+  color: var(--hero-soft);
+  opacity: 0.78;
   transition: opacity 0.3s ease, color 0.3s ease;
 }
 
@@ -1594,12 +1600,15 @@ a.sns-card:hover {
   .hero__brand h1 {
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    gap: 0;
   }
 
   .hero__roma {
-    margin-left: 2px;
-    letter-spacing: 0.42em;
+    margin-left: 4px;
+    margin-bottom: 0;
+    margin-top: 2px;
+    letter-spacing: 0.5em;
+    transform: translateY(0);
   }
 }
 
@@ -1658,19 +1667,19 @@ a.sns-card:hover {
   }
 
   .hero__brand h1 {
-    font-size: 68px;
-    gap: 0 14px;
+    font-size: 58px;
+    gap: 0 16px;
   }
 
   .hero__roma {
-    font-size: 0.32em;
-    letter-spacing: 0.52em;
-    transform: translateY(-0.08em);
+    font-size: 0.26em;
+    letter-spacing: 0.6em;
+    transform: translateY(0.28em);
   }
 
   .hero__catch {
-    max-width: 22em;
-    font-size: 15px;
+    max-width: 24em;
+    font-size: 12px;
   }
 
   .hero__scroll {
