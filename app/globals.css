@@ -367,15 +367,16 @@ h3 {
 
 .hero__brand {
   position: absolute;
-  left: 20px;
-  right: 20px;
+  left: 12px;
+  right: auto;
   bottom: max(48px, calc(7.5vh + env(safe-area-inset-bottom, 0px)));
   z-index: 2;
   display: grid;
   justify-items: start;
   gap: 10px;
-  max-width: 32em;
-  padding: 24px 32px 28px 12px;
+  width: min(25em, calc(100% - 96px));
+  max-width: 25em;
+  padding: 22px 16px 26px 6px;
   isolation: isolate;
   color: var(--hero-ink);
   text-shadow: none;
@@ -385,53 +386,53 @@ h3 {
 .hero__brand::before {
   content: "";
   position: absolute;
-  left: -20px;
-  right: -40px;
+  left: -12px;
+  right: 8px;
   top: 0;
   bottom: 0;
   z-index: -1;
   pointer-events: none;
-  border-radius: 0 32px 32px 0;
+  border-radius: 0 10px 10px 0;
   background: linear-gradient(
     105deg,
     rgba(255, 250, 252, 0.94) 0%,
-    rgba(248, 242, 255, 0.78) 42%,
-    rgba(255, 247, 251, 0.28) 78%,
+    rgba(248, 242, 255, 0.78) 48%,
+    rgba(255, 247, 251, 0.22) 82%,
     transparent 100%
   );
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(210, 186, 198, 0.32);
+  border: 1px solid rgba(210, 186, 198, 0.28);
   border-right-color: transparent;
-  box-shadow: 6px 12px 28px rgba(74, 52, 64, 0.07);
+  box-shadow: 4px 10px 22px rgba(74, 52, 64, 0.06);
 }
 
 .hero__site {
-  margin: 0 0 6px;
+  margin: 0 0 2px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 15px 7px 14px;
+  padding: 0;
   font-family: var(--hero-en);
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #1e1a1e;
+  color: #3a3038;
   white-space: nowrap;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(148, 116, 136, 0.4);
-  border-radius: 999px;
+  background: none;
+  border: 0;
+  border-radius: 0;
   text-shadow: none;
 }
 
 .hero__site::before {
   content: "";
-  width: 5px;
-  height: 5px;
-  background: #a87890;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  opacity: 0.95;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #c48aa0;
+  opacity: 0.9;
 }
 
 .hero__brand h1 {
@@ -1561,8 +1562,16 @@ a.sns-card:hover {
 
 @media (max-width: 719px) {
   .hero__brand {
-    padding: 22px 24px 26px 10px;
-    max-width: 26em;
+    left: 10px;
+    width: min(20em, calc(100% - 72px));
+    max-width: 20em;
+    padding: 20px 12px 24px 4px;
+  }
+
+  .hero__brand::before {
+    left: -10px;
+    right: 6px;
+    border-radius: 0 8px 8px 0;
   }
 
   .hero__brand h1 {
@@ -1619,24 +1628,24 @@ a.sns-card:hover {
   }
 
   .hero__brand {
-    left: max(24px, calc((100% - 1040px) / 2));
+    left: 16px;
     right: auto;
     bottom: 88px;
-    max-width: 40em;
-    padding: 32px 58px 36px 18px;
+    width: 32em;
+    max-width: 32em;
+    padding: 28px 18px 32px 8px;
     gap: 12px;
   }
 
   .hero__brand::before {
-    left: -40px;
-    right: -72px;
-    border-radius: 0 44px 44px 0;
+    left: -16px;
+    right: 10px;
+    border-radius: 0 12px 12px 0;
   }
 
   .hero__site {
-    font-size: 20px;
-    padding: 8px 18px 8px 16px;
-    letter-spacing: 0.05em;
+    font-size: 19px;
+    letter-spacing: 0.14em;
   }
 
   .hero__brand h1 {
