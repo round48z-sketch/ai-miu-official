@@ -2,6 +2,13 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/NewsList";
 import { snsLinks } from "@/content/site";
 
+const snsMeta: Record<string, { blurb: string; action: string }> = {
+  X: { blurb: "日常と、みうのいま。", action: "Follow" },
+  TikTok: { blurb: "動画で、みうと会おう。", action: "Watch" },
+  Pinterest: { blurb: "公開まで、もう少しお待ちください。", action: "Coming Soon" },
+  Spotify: { blurb: "楽曲を、いつでも。", action: "Listen" },
+};
+
 function SnsMark({ name }: { name: string }) {
   if (name === "X") {
     return (
@@ -44,13 +51,16 @@ export function SnsCards({ linkedOnly = false }: { linkedOnly?: boolean }) {
     <ul className="sns-grid">
       {items.map((item) => {
         const slug = item.name.toLowerCase();
+        const meta = snsMeta[item.name];
         const inner = (
           <>
             <span className="sns-card__mark">
               <SnsMark name={item.name} />
             </span>
             <span className="sns-card__name">{item.name}</span>
-            <small>{item.handle}</small>
+            <span className="sns-card__handle">{item.handle}</span>
+            {meta ? <span className="sns-card__blurb">{meta.blurb}</span> : null}
+            {meta ? <span className="sns-card__action">{meta.action}</span> : null}
           </>
         );
 
@@ -61,7 +71,9 @@ export function SnsCards({ linkedOnly = false }: { linkedOnly?: boolean }) {
                 {inner}
               </a>
             ) : (
-              <span className={`sns-card sns-card--${slug} is-soon`}>{inner}</span>
+              <span className={`sns-card sns-card--${slug} is-soon`} aria-disabled="true">
+                {inner}
+              </span>
             )}
           </li>
         );
