@@ -15,10 +15,11 @@
   --header-h: 56px;
   --sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
   --display: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --hero-ja: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+  --hero-ja: var(--font-mincho), "Hina Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
   --hero-en: var(--font-hero-serif), "Palatino Linotype", Palatino, "Times New Roman", serif;
-  --hero-ink: #342c34;
-  --hero-soft: #2a2228;
+  --hero-ink: #5e4858;
+  --hero-roma: #7a6678;
+  --hero-muted: #5a4656;
 }
 
 * {
@@ -135,14 +136,18 @@ h3 {
   border-bottom: 0;
 }
 
-.site-header.is-overlay:not(.is-scrolled) .desktop-nav a {
-  color: rgba(51, 50, 56, 0.72);
+.site-header.is-overlay:not(.is-scrolled) .desktop-nav a,
+.site-header.is-overlay:not(.is-scrolled) .menu-toggle {
+  color: #4e3c4a;
+  text-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.82),
+    0 0 1px rgba(255, 247, 251, 0.9);
 }
 
 .site-header.is-overlay:not(.is-scrolled) .desktop-nav a:hover,
 .site-header.is-overlay:not(.is-scrolled) .desktop-nav a[aria-current="page"],
-.site-header.is-overlay:not(.is-scrolled) .menu-toggle {
-  color: var(--ink);
+.site-header.is-overlay:not(.is-scrolled) .menu-toggle:hover {
+  color: #7d5368;
 }
 
 .site-header__inner {
@@ -164,10 +169,12 @@ h3 {
   position: relative;
   font-family: var(--display);
   font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: #5a4656;
   padding: 6px 0;
+  transition: color 0.3s ease;
 }
 
 .desktop-nav a::after {
@@ -185,7 +192,7 @@ h3 {
 
 .desktop-nav a:hover,
 .desktop-nav a[aria-current="page"] {
-  color: var(--ink);
+  color: #7d5368;
 }
 
 .desktop-nav a:hover::after,
@@ -199,9 +206,10 @@ h3 {
   padding: 8px 0;
   font-family: var(--display);
   font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: #5a4656;
 }
 
 .mobile-menu {
@@ -351,60 +359,45 @@ h3 {
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(to bottom, rgba(255, 243, 248, 0.16) 0%, transparent 14%),
+    linear-gradient(to bottom, rgba(255, 243, 248, 0.14) 0%, transparent 14%),
     linear-gradient(
       to top,
-      rgba(255, 243, 248, 0.2) 0%,
-      rgba(255, 243, 248, 0.06) 10%,
-      transparent 28%
+      rgba(255, 243, 248, 0.16) 0%,
+      rgba(255, 243, 248, 0.04) 12%,
+      transparent 30%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 247, 251, 0.56) 0%,
+      rgba(255, 243, 248, 0.34) 18%,
+      rgba(248, 242, 255, 0.14) 36%,
+      rgba(255, 247, 251, 0.03) 50%,
+      transparent 64%
     ),
     radial-gradient(
-      ellipse 50% 34% at 10% 92%,
-      rgba(255, 245, 250, 0.32),
+      ellipse 54% 52% at 8% 84%,
+      rgba(255, 247, 251, 0.46),
       transparent 74%
     );
 }
 
 .hero__brand {
   position: absolute;
-  left: 12px;
+  left: 24px;
   right: auto;
   bottom: max(48px, calc(7.5vh + env(safe-area-inset-bottom, 0px)));
   z-index: 2;
   display: grid;
   justify-items: start;
   gap: 10px;
-  width: min(25em, calc(100% - 96px));
-  max-width: 25em;
-  padding: 22px 16px 26px 6px;
-  isolation: isolate;
+  width: auto;
+  max-width: min(28em, calc(100% - 48px));
+  padding: 0;
   color: var(--hero-ink);
-  text-shadow: none;
+  text-shadow:
+    0 0 14px rgba(255, 247, 251, 0.72),
+    0 1px 2px rgba(255, 243, 248, 0.4);
   animation: fade-up 0.9s ease 0.2s both;
-}
-
-.hero__brand::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  right: 8px;
-  top: 0;
-  bottom: 0;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 0 10px 10px 0;
-  background: linear-gradient(
-    105deg,
-    rgba(255, 250, 252, 0.94) 0%,
-    rgba(248, 242, 255, 0.78) 48%,
-    rgba(255, 247, 251, 0.22) 82%,
-    transparent 100%
-  );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(210, 186, 198, 0.28);
-  border-right-color: transparent;
-  box-shadow: 4px 10px 22px rgba(74, 52, 64, 0.06);
 }
 
 .hero__site {
@@ -415,15 +408,17 @@ h3 {
   padding: 0;
   font-family: var(--hero-en);
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #3a3038;
+  color: var(--hero-muted);
   white-space: nowrap;
   background: none;
   border: 0;
   border-radius: 0;
-  text-shadow: none;
+  text-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.85),
+    0 0 1px rgba(255, 247, 251, 0.95);
 }
 
 .hero__site::before {
@@ -440,36 +435,45 @@ h3 {
   display: flex;
   flex-wrap: nowrap;
   align-items: baseline;
-  gap: 0.08em;
+  gap: 0.1em;
   font-family: var(--hero-ja);
   font-size: clamp(51px, 14vw, 86px);
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.05;
+  line-height: 1.12;
   color: var(--hero-ink);
   font-feature-settings: "palt";
+  font-kerning: normal;
   font-synthesis: none;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.28);
+  text-shadow:
+    0 0 16px rgba(255, 247, 251, 0.75),
+    0 1px 2px rgba(255, 243, 248, 0.42);
 }
 
 .hero__ja {
   position: relative;
   display: inline-flex;
   align-items: baseline;
+  gap: 0;
   padding-bottom: 0;
   font-weight: 400;
 }
 
 .hero__ai {
-  margin-right: 0.05em;
-  letter-spacing: 0.08em;
-  font-weight: 300;
-  color: #3d323e;
+  font-family: var(--hero-en);
+  font-size: 0.9em;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-right: -0.03em;
+  transform: translateY(0.04em);
+  color: var(--hero-ink);
 }
 
 .hero__name {
-  letter-spacing: 0.05em;
-  color: #2c242a;
+  letter-spacing: -0.08em;
+  font-weight: 400;
+  color: var(--hero-ink);
 }
 
 .hero__ja::after {
@@ -488,32 +492,36 @@ h3 {
   align-items: baseline;
   flex-shrink: 0;
   margin: 0;
-  padding-bottom: 0.04em;
+  padding-bottom: 0.05em;
   font-family: var(--hero-en);
-  font-size: 0.56em;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  font-size: 0.64em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   line-height: 1;
   text-transform: lowercase;
-  color: #221c22;
+  color: var(--hero-roma);
   white-space: nowrap;
 }
 
 .hero__slash {
-  margin-right: 0.14em;
+  margin-right: 0.1em;
+  font-size: 0.86em;
   letter-spacing: 0;
   font-weight: 400;
-  color: #433544;
+  color: #8a7688;
 }
 
 .hero__catch {
   margin: 16px 0 4px;
   max-width: 24em;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.85;
-  color: #241c22;
+  color: #5a4656;
+  text-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.85),
+    0 0 1px rgba(255, 247, 251, 0.95);
 }
 
 .hero__sns {
@@ -526,17 +534,20 @@ h3 {
 .hero__sns a {
   display: inline-block;
   font-family: var(--hero-en);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #241c22;
+  color: var(--hero-muted);
   opacity: 1;
+  text-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.85),
+    0 0 1px rgba(255, 247, 251, 0.95);
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .hero__sns a:hover {
-  color: var(--rose-deep);
+  color: #7d5368;
   transform: translateY(-1px);
 }
 
@@ -550,10 +561,14 @@ h3 {
   align-items: center;
   gap: 10px;
   font-family: var(--display);
-  font-size: 9px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(184, 106, 138, 0.82);
+  color: #5a4656;
+  text-shadow:
+    0 0.5px 0 rgba(255, 255, 255, 0.85),
+    0 0 1px rgba(255, 247, 251, 0.95);
   animation: fade-up 0.9s ease 0.5s both;
 }
 
@@ -561,7 +576,7 @@ h3 {
   display: block;
   width: 1px;
   height: 32px;
-  background: linear-gradient(to bottom, rgba(184, 106, 138, 0.85), rgba(184, 106, 138, 0));
+  background: linear-gradient(to bottom, rgba(90, 70, 86, 0.82), rgba(90, 70, 86, 0));
   transform-origin: top;
   animation: scroll-line 2.2s ease-in-out infinite;
 }
@@ -1562,16 +1577,10 @@ a.sns-card:hover {
 
 @media (max-width: 719px) {
   .hero__brand {
-    left: 10px;
-    width: min(20em, calc(100% - 72px));
-    max-width: 20em;
-    padding: 20px 12px 24px 4px;
-  }
-
-  .hero__brand::before {
-    left: -10px;
-    right: 6px;
-    border-radius: 0 8px 8px 0;
+    left: 22px;
+    width: auto;
+    max-width: min(22em, calc(100% - 44px));
+    padding: 0;
   }
 
   .hero__brand h1 {
@@ -1581,8 +1590,8 @@ a.sns-card:hover {
   }
 
   .hero__roma {
-    font-size: 0.53em;
-    letter-spacing: 0.03em;
+    font-size: 0.61em;
+    letter-spacing: 0.04em;
   }
 
   .hero__catch {
@@ -1628,19 +1637,13 @@ a.sns-card:hover {
   }
 
   .hero__brand {
-    left: 16px;
+    left: max(48px, calc((100% - 1040px) / 2));
     right: auto;
     bottom: 88px;
-    width: 32em;
+    width: auto;
     max-width: 32em;
-    padding: 28px 18px 32px 8px;
+    padding: 0;
     gap: 12px;
-  }
-
-  .hero__brand::before {
-    left: -16px;
-    right: 10px;
-    border-radius: 0 12px 12px 0;
   }
 
   .hero__site {
@@ -1650,12 +1653,12 @@ a.sns-card:hover {
 
   .hero__brand h1 {
     font-size: 86px;
-    gap: 0.08em;
+    gap: 0.14em;
   }
 
   .hero__roma {
-    font-size: 0.58em;
-    letter-spacing: 0.03em;
+    font-size: 0.66em;
+    letter-spacing: 0.04em;
   }
 
   .hero__catch {
@@ -1665,7 +1668,7 @@ a.sns-card:hover {
   }
 
   .hero__sns a {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .hero__scroll {

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Noto_Serif_JP } from "next/font/google";
+import { Cormorant_Garamond, Hina_Mincho } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -7,16 +7,16 @@ import { getSiteUrl, siteConfig } from "@/content/site";
 import { buildJsonLd } from "@/lib/metadata";
 import "./globals.css";
 
-const heroMincho = Noto_Serif_JP({
+const heroMincho = Hina_Mincho({
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: "400",
   variable: "--font-mincho",
   display: "swap",
 });
 
 const heroSerif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-hero-serif",
   display: "swap",
 });
