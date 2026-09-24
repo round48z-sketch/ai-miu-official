@@ -34,7 +34,7 @@ export default function HomePage() {
           <Reveal>
             <SectionHead en="News" ja="お知らせ" href="/news" />
           </Reveal>
-          <Reveal>
+          <Reveal delay={90}>
             <NewsList items={latest} />
           </Reveal>
         </div>
