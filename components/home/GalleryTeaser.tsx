@@ -1,12 +1,16 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { Aura } from "@/components/Aura";
+import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/NewsList";
 import { TextLink } from "@/components/TextLink";
-import { galleryTeaserImages } from "@/content/gallery";
+import { galleryIndexForSrc, galleryTeaserImages } from "@/content/gallery";
 
 export function GalleryTeaser() {
-  const images = galleryTeaserImages;
+  const [active, setActive] = useState<number | null>(null);
 
   return (
     <section className="gallery-band" id="gallery">
@@ -22,15 +26,25 @@ export function GalleryTeaser() {
         </Reveal>
       </div>
       <Reveal className="gallery-spread" variant="plain">
-        {images.map((image, index) => (
+        {galleryTeaserImages.map((image, index) => (
           <figure key={image.src} className={`gallery-spread__item n${index + 1} is-${image.layout}`}>
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              sizes="(min-width: 980px) 42vw, (min-width: 720px) 55vw, 92vw"
-            />
+            <button
+              type="button"
+              className="gallery-page__open"
+              onClick={() => {
+                const next = galleryIndexForSrc(image.src);
+                if (next >= 0) setActive(next);
+              }}
+              aria-label={`${image.alt}を拡大表示`}
+            >
+              <Image
+                src={image.src}
+                alt=""
+                width={image.width}
+                height={image.height}
+                sizes="(min-width: 980px) 42vw, (min-width: 720px) 55vw, 92vw"
+              />
+            </button>
           </figure>
         ))}
       </Reveal>
@@ -41,6 +55,7 @@ export function GalleryTeaser() {
           </TextLink>
         </Reveal>
       </div>
+      <GalleryLightbox index={active} onClose={() => setActive(null)} onIndexChange={setActive} />
     </section>
   );
 }

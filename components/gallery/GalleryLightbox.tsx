@@ -117,10 +117,9 @@ export function GalleryLightbox({
         <Image
           src={image.src}
           alt={image.alt}
-          width={image.width}
-          height={image.height}
+          fill
           className="lightbox__image"
-          sizes="90vw"
+          sizes="96vw"
           priority
         />
         <figcaption id={labelId} className="lightbox__caption">

@@ -84,5 +84,9 @@ export const galleryTeaserImages: GalleryImage[] = [
 
 export const galleryImages: GalleryImage[] = Array.from({ length: 30 }, (_, index) => photo(index + 1));
 
+export function galleryIndexForSrc(src: string) {
+  return galleryImages.findIndex((image) => image.src === src);
+}
+
 export const GALLERY_PAGE_INITIAL = 12;
 export const GALLERY_PAGE_STEP = 9;
