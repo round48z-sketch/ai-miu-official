@@ -57,7 +57,7 @@ export function GalleryBoard() {
                       alt=""
                       width={image.width}
                       height={image.height}
-                      sizes="(min-width: 980px) 42vw, (min-width: 720px) 55vw, 92vw"
+                      sizes="(min-width: 980px) 32vw, (min-width: 720px) 48vw, 92vw"
                       priority={globalIndex === 0}
                       loading={globalIndex === 0 ? undefined : globalIndex < 4 ? "eager" : "lazy"}
                     />
