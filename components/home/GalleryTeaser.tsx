@@ -3,10 +3,10 @@ import { Aura } from "@/components/Aura";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/NewsList";
 import { TextLink } from "@/components/TextLink";
-import { galleryImages } from "@/content/gallery";
+import { galleryTeaserImages } from "@/content/gallery";
 
 export function GalleryTeaser() {
-  const images = galleryImages.slice(0, 5);
+  const images = galleryTeaserImages;
 
   return (
     <section className="gallery-band" id="gallery">
