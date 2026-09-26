@@ -134,12 +134,8 @@ export function GalleryLightbox({
       <button ref={closeRef} type="button" className="lightbox__close" aria-label="閉じる" onClick={onClose}>
         ×
       </button>
-      <button type="button" className="lightbox__nav is-prev" aria-label="前の写真" onClick={() => go(-1)}>
-        ‹
-      </button>
-      <button type="button" className="lightbox__nav is-next" aria-label="次の写真" onClick={() => go(1)}>
-        ›
-      </button>
+      <button type="button" className="lightbox__nav is-prev" aria-label="前の写真" onClick={() => go(-1)} />
+      <button type="button" className="lightbox__nav is-next" aria-label="次の写真" onClick={() => go(1)} />
       <figure
         className="lightbox__frame"
         onClick={(event) => event.stopPropagation()}
@@ -158,6 +154,7 @@ export function GalleryLightbox({
         {/* Native img so Next/Image fill and global max-width cannot shrink the photo. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
+          key={image.src}
           src={image.src}
           alt={image.alt}
           width={display.width}

@@ -13,7 +13,7 @@ export default function GalleryPage() {
   return (
     <article className="subpage">
       <div className="container">
-        <PageIntro en="Gallery" ja="ギャラリー" lead="笑顔と、日常と、季節の光。" />
+        <PageIntro en="Gallery" ja="ギャラリー" lead="笑顔と、日常と、季節の光。" note="Fragments of Miu." />
       </div>
       <GalleryBoard />
     </article>

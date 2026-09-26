@@ -10,8 +10,10 @@ import {
   galleryImages,
   type GalleryImage,
 } from "@/content/gallery";
+import { snsLinks } from "@/content/site";
 
 const GROUP = 6;
+const gallerySns = snsLinks.filter((item) => item.name === "X" || item.name === "TikTok");
 
 function chunk(from: number, to: number) {
   const items = galleryImages.slice(from, to);
@@ -54,7 +56,7 @@ export function GalleryBoard() {
                   >
                     <Image
                       src={image.src}
-                      alt=""
+                      alt={image.alt}
                       width={image.width}
                       height={image.height}
                       sizes="(min-width: 980px) 32vw, (min-width: 720px) 48vw, 92vw"
@@ -74,14 +76,34 @@ export function GalleryBoard() {
             type="button"
             className="text-link gallery-more"
             onClick={() => {
-              const next = Math.min(shown + GALLERY_PAGE_STEP, galleryImages.length);
-              setGroups((current) => [...current, ...chunk(shown, next)]);
+              setGroups((current) => {
+                const shownNow = current.reduce((total, group) => total + group.length, 0);
+                if (shownNow >= galleryImages.length) return current;
+                const next = Math.min(shownNow + GALLERY_PAGE_STEP, galleryImages.length);
+                return [...current, ...chunk(shownNow, next)];
+              });
             }}
           >
             View More
           </button>
         </div>
-      ) : null}
+      ) : (
+        <nav className="gallery-follow" aria-label="公式SNS">
+          <p className="gallery-follow__label">More Miu</p>
+          <p className="gallery-follow__links">
+            {gallerySns.map((item, index) =>
+              item.href ? (
+                <span key={item.name}>
+                  {index > 0 ? <span aria-hidden="true"> / </span> : null}
+                  <a href={item.href} target="_blank" rel="noopener noreferrer">
+                    {item.name}
+                  </a>
+                </span>
+              ) : null,
+            )}
+          </p>
+        </nav>
+      )}
       <GalleryLightbox index={active} onClose={() => setActive(null)} onIndexChange={setActive} />
     </>
   );
