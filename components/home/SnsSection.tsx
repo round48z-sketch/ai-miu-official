@@ -1,3 +1,4 @@
+import { Aura } from "@/components/Aura";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/NewsList";
 import { snsLinks } from "@/content/site";
@@ -49,7 +50,7 @@ export function SnsCards({ linkedOnly = false }: { linkedOnly?: boolean }) {
 
   return (
     <ul className="sns-grid">
-      {items.map((item) => {
+      {items.map((item, index) => {
         const slug = item.name.toLowerCase();
         const meta = snsMeta[item.name];
         const inner = (
@@ -66,15 +67,17 @@ export function SnsCards({ linkedOnly = false }: { linkedOnly?: boolean }) {
 
         return (
           <li key={item.name}>
-            {item.href ? (
-              <a className={`sns-card sns-card--${slug}`} href={item.href} target="_blank" rel="noopener noreferrer">
-                {inner}
-              </a>
-            ) : (
-              <span className={`sns-card sns-card--${slug} is-soon`} aria-disabled="true">
-                {inner}
-              </span>
-            )}
+            <Reveal delay={index * 120}>
+              {item.href ? (
+                <a className={`sns-card sns-card--${slug}`} href={item.href} target="_blank" rel="noopener noreferrer">
+                  {inner}
+                </a>
+              ) : (
+                <span className={`sns-card sns-card--${slug} is-soon`} aria-disabled="true">
+                  {inner}
+                </span>
+              )}
+            </Reveal>
           </li>
         );
       })}
@@ -85,13 +88,12 @@ export function SnsCards({ linkedOnly = false }: { linkedOnly?: boolean }) {
 export function SnsSection() {
   return (
     <section className="sns-band" id="sns">
+      <Aura className="aura--follow" />
       <div className="container">
-        <Reveal>
+        <Reveal variant="left">
           <SectionHead en="Follow" ja="フォロー" lead="みうのいまは、こちらから。" />
         </Reveal>
-        <Reveal delay={80}>
-          <SnsCards />
-        </Reveal>
+        <SnsCards />
       </div>
     </section>
   );

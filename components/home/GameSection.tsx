@@ -10,7 +10,7 @@ export function GameList({ heading = "h3" }: { heading?: "h2" | "h3" }) {
   return (
     <div className="game-stage">
       {games.map((game, index) => (
-        <Reveal key={game.slug} className="game-piece" delay={index * 80}>
+        <Reveal key={game.slug} className="game-piece" delay={index * 120}>
           <article>
             <div className="game-piece__image">
               <Image
@@ -38,7 +38,7 @@ export function GameSection() {
   return (
     <section className="game-band" id="game">
       <div className="container">
-        <Reveal>
+        <Reveal variant="left">
           <SectionHead en="Game" ja="ゲーム" href="/game" lead="みうと、あそぼう。" />
         </Reveal>
         <GameList />

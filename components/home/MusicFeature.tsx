@@ -32,10 +32,10 @@ export function MusicFeature() {
   return (
     <section className="music-band" id="music">
       <div className="container">
-        <Reveal>
+        <Reveal variant="left">
           <SectionHead en="Music" ja="ミュージック" href="/music" lead="きらめくメロディを、いつでも。" />
         </Reveal>
-        <Reveal className="music-feature">
+        <Reveal className="music-feature" delay={110}>
           <div className="music-feature__jacket">
             <Image
               src={featured.jacket.src}
@@ -54,7 +54,7 @@ export function MusicFeature() {
             <StreamingLinks links={featured.streaming} />
           </div>
         </Reveal>
-        <Reveal className="music-rest" delay={60}>
+        <Reveal className="music-rest" variant="plain">
           {others.map((track) => (
             <article key={track.slug}>
               <div className="music-rest__jacket">

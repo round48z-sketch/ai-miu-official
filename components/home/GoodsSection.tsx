@@ -8,12 +8,12 @@ export function GoodsSection() {
   return (
     <section className="goods-band" id="goods">
       <div className="container">
-        <Reveal>
+        <Reveal variant="left">
           <SectionHead en="Goods" ja="グッズ" href="/goods" lead="みうを、毎日のそばに。" />
         </Reveal>
         <div className="goods-row">
           {goodsItems.map((item, index) => (
-            <Reveal key={item.slug} className="goods-piece" delay={index * 80}>
+            <Reveal key={item.slug} className="goods-piece" delay={index * 130}>
               <div className="goods-piece__image">
                 <Image
                   src={item.image.src}

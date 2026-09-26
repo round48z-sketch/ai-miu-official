@@ -16,21 +16,25 @@ export function ProfileTeaser() {
           sizes="(min-width: 980px) 52vw, 100vw"
         />
       </Reveal>
-      <Reveal className="profile-band__text" delay={80}>
-        <SectionHead en="Profile" ja="プロフィール" />
-        <p className="profile-band__name">{profile.artistName}</p>
-        <p className="profile-band__lead">{profile.lead}</p>
-        <p>{profile.bio}</p>
-        <dl className="facts">
-          {profile.facts.map((fact) => (
-            <div key={fact.label}>
-              <dt>{fact.label}</dt>
-              <dd>{fact.value}</dd>
-            </div>
-          ))}
-        </dl>
-        <TextLink href="/profile">View Profile</TextLink>
-      </Reveal>
+      <div className="profile-band__text">
+        <Reveal variant="left">
+          <SectionHead en="Profile" ja="プロフィール" />
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="profile-band__name">{profile.artistName}</p>
+          <p className="profile-band__lead">{profile.lead}</p>
+          <p>{profile.bio}</p>
+          <dl className="facts">
+            {profile.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <TextLink href="/profile">View Profile</TextLink>
+        </Reveal>
+      </div>
     </section>
   );
 }

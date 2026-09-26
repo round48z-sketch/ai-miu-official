@@ -31,10 +31,10 @@ export default function HomePage() {
       <Hero />
       <section className="news-band" id="news">
         <div className="container">
-          <Reveal>
+          <Reveal variant="left">
             <SectionHead en="News" ja="お知らせ" href="/news" />
           </Reveal>
-          <Reveal delay={90}>
+          <Reveal variant="plain">
             <NewsList items={latest} />
           </Reveal>
         </div>
