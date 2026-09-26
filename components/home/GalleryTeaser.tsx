@@ -31,9 +31,11 @@ export function GalleryTeaser() {
             <button
               type="button"
               className="gallery-page__open"
-              onClick={() => {
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 const next = galleryIndexForSrc(image.src);
-                if (next >= 0) setActive(next);
+                setActive(next >= 0 ? next : 0);
               }}
               aria-label={`${image.alt}を拡大表示`}
             >

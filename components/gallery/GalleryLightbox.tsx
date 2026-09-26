@@ -1,11 +1,23 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { galleryImages } from "@/content/gallery";
 
 const total = galleryImages.length;
 const CLOSE_MS = 320;
+
+function fitPhoto(width: number, height: number, viewportW: number, viewportH: number) {
+  const mobile = viewportW < 720;
+  const maxW = viewportW * (mobile ? 0.96 : 0.94);
+  const maxH = viewportH * (mobile ? 0.88 : 0.9);
+  const scale = Math.min(maxW / width, maxH / height);
+
+  return {
+    width: Math.round(width * scale),
+    height: Math.round(height * scale),
+  };
+}
 
 export function GalleryLightbox({
   index,
@@ -21,6 +33,8 @@ export function GalleryLightbox({
   const touchX = useRef<number | null>(null);
   const [held, setHeld] = useState<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [, setViewport] = useState(0);
+  const natural = useRef<{ src: string; width: number; height: number } | null>(null);
   const current = index ?? held;
   const image = current === null ? null : galleryImages[current];
 
@@ -37,18 +51,39 @@ export function GalleryLightbox({
   }, [index]);
 
   useEffect(() => {
+    const onResize = () => setViewport((value) => value + 1);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
     if (current === null) return;
 
     const html = document.documentElement;
     const body = document.body;
-    const prevHtml = html.style.overflow;
-    const prevBody = body.style.overflow;
+    const scrollY = window.scrollY;
+    const prev = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      htmlOverscroll: html.style.overscrollBehavior,
+      bodyOverscroll: body.style.overscrollBehavior,
+      bodyPaddingRight: body.style.paddingRight,
+    };
+    const scrollbar = window.innerWidth - html.clientWidth;
+
     html.style.overflow = "hidden";
     body.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+    body.style.overscrollBehavior = "none";
+    if (scrollbar > 0) body.style.paddingRight = `${scrollbar}px`;
 
     return () => {
-      html.style.overflow = prevHtml;
-      body.style.overflow = prevBody;
+      html.style.overflow = prev.htmlOverflow;
+      body.style.overflow = prev.bodyOverflow;
+      html.style.overscrollBehavior = prev.htmlOverscroll;
+      body.style.overscrollBehavior = prev.bodyOverscroll;
+      body.style.paddingRight = prev.bodyPaddingRight;
+      window.scrollTo(0, scrollY);
     };
   }, [current]);
 
@@ -76,13 +111,19 @@ export function GalleryLightbox({
     return () => window.removeEventListener("keydown", onKey);
   }, [open, current, onClose, onIndexChange]);
 
-  if (current === null || !image) return null;
+  if (typeof document === "undefined" || current === null || !image) return null;
+
+  const source =
+    image && natural.current?.src === image.src ? natural.current : image;
+  const display = source
+    ? fitPhoto(source.width, source.height, window.innerWidth, window.innerHeight)
+    : { width: 0, height: 0 };
 
   const go = (direction: -1 | 1) => {
     onIndexChange((current + direction + total) % total);
   };
 
-  return (
+  return createPortal(
     <div
       className={`lightbox${open ? " is-open" : ""}`}
       role="dialog"
@@ -114,13 +155,26 @@ export function GalleryLightbox({
           go(delta > 0 ? -1 : 1);
         }}
       >
-        <Image
+        {/* Native img so Next/Image fill and global max-width cannot shrink the photo. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={image.src}
           alt={image.alt}
-          fill
+          width={display.width}
+          height={display.height}
           className="lightbox__image"
-          sizes="96vw"
-          priority
+          draggable={false}
+          style={{ width: display.width, height: display.height }}
+          onLoad={(event) => {
+            const photo = event.currentTarget;
+            if (!photo.naturalWidth || !photo.naturalHeight) return;
+            natural.current = {
+              src: image.src,
+              width: photo.naturalWidth,
+              height: photo.naturalHeight,
+            };
+            setViewport((value) => value + 1);
+          }}
         />
         <figcaption id={labelId} className="lightbox__caption">
           {image.alt}
@@ -129,6 +183,7 @@ export function GalleryLightbox({
       <p className="lightbox__count" aria-live="polite">
         {current + 1} / {total}
       </p>
-    </div>
+    </div>,
+    document.body,
   );
 }

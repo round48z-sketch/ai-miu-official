@@ -761,7 +761,7 @@ h3 {
 .gallery-band > .container,
 .gallery-band .gallery-spread {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .goods-band {
@@ -1828,9 +1828,15 @@ a.sns-card:hover .sns-card__action::after {
   padding: 12px 18px 24px;
 }
 
+.gallery-spread__item,
+.gallery-page__item {
+  cursor: zoom-in;
+}
+
 .gallery-page__open {
   position: absolute;
   inset: 0;
+  z-index: 2;
   display: block;
   width: 100%;
   height: 100%;
@@ -1838,12 +1844,14 @@ a.sns-card:hover .sns-card__action::after {
   border: 0;
   background: transparent;
   cursor: zoom-in;
+  pointer-events: auto;
 }
 
 .gallery-spread__item .gallery-page__open img,
 .gallery-page__item .gallery-page__open img {
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .gallery-page__open::after {
@@ -1945,9 +1953,13 @@ a.sns-card:hover .sns-card__action::after {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 90;
-  display: grid;
-  place-items: center;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  touch-action: none;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.32s ease, visibility 0.32s ease;
@@ -1963,18 +1975,18 @@ a.sns-card:hover .sns-card__action::after {
   inset: 0;
   border: 0;
   padding: 0;
-  background: rgba(38, 28, 34, 0.78);
+  background: rgba(38, 28, 34, 0.82);
   cursor: zoom-out;
 }
 
 .lightbox__close,
 .lightbox__nav {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 3;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -1993,34 +2005,39 @@ a.sns-card:hover .sns-card__action::after {
 }
 
 .lightbox__close {
-  top: max(14px, env(safe-area-inset-top, 0px));
-  right: max(14px, env(safe-area-inset-right, 0px));
-  font-size: 26px;
+  top: max(16px, env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  font-size: 28px;
 }
 
 .lightbox__nav {
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--display);
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .lightbox__nav.is-prev {
-  left: max(10px, env(safe-area-inset-left, 0px));
+  left: max(12px, env(safe-area-inset-left, 0px));
 }
 
 .lightbox__nav.is-next {
-  right: max(10px, env(safe-area-inset-right, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
 }
 
 .lightbox__frame {
   position: relative;
   z-index: 1;
-  width: 94vw;
-  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  max-width: none;
+  max-height: none;
   margin: 0;
   opacity: 0;
-  transform: scale(0.97);
+  transform: scale(0.985);
   transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -2029,10 +2046,16 @@ a.sns-card:hover .sns-card__action::after {
   transform: none;
 }
 
-.lightbox__image {
-  object-fit: contain !important;
+.lightbox__image,
+.lightbox img.lightbox__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none !important;
+  object-fit: contain;
   object-position: center center;
-  max-width: none;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 .lightbox__caption {
@@ -2044,8 +2067,8 @@ a.sns-card:hover .sns-card__action::after {
 }
 
 .lightbox__count {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 3;
   left: 50%;
   bottom: max(16px, env(safe-area-inset-bottom, 0px));
   margin: 0;
@@ -2057,6 +2080,14 @@ a.sns-card:hover .sns-card__action::after {
 }
 
 @media (max-width: 719px) {
+  .lightbox__close {
+    top: max(10px, env(safe-area-inset-top, 0px));
+    right: max(10px, env(safe-area-inset-right, 0px));
+    width: 44px;
+    height: 44px;
+    font-size: 26px;
+  }
+
   .lightbox__nav {
     width: 40px;
     height: 40px;
@@ -2065,17 +2096,13 @@ a.sns-card:hover .sns-card__action::after {
   }
 
   .lightbox__nav.is-prev {
-    left: 6px;
+    left: max(6px, env(safe-area-inset-left, 0px));
   }
 
   .lightbox__nav.is-next {
-    right: 6px;
+    right: max(6px, env(safe-area-inset-right, 0px));
   }
 
-  .lightbox__frame {
-    width: 96vw;
-    height: 86vh;
-  }
 }
 
 .contact-body a:not(.sns-card) {
