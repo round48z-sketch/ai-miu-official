@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
 import { Reveal } from "@/components/Reveal";
 import {
   GALLERY_PAGE_INITIAL,
@@ -25,6 +26,7 @@ function chunk(from: number, to: number) {
 
 export function GalleryBoard() {
   const [groups, setGroups] = useState<GalleryImage[][]>(() => chunk(0, GALLERY_PAGE_INITIAL));
+  const [active, setActive] = useState<number | null>(null);
   const shown = groups.reduce((total, group) => total + group.length, 0);
   const canLoadMore = shown < galleryImages.length;
 
@@ -44,15 +46,22 @@ export function GalleryBoard() {
 
               return (
                 <figure key={image.src} className={`gallery-page__item n${index + 1} is-${image.layout}`}>
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={image.width}
-                    height={image.height}
-                    sizes="(min-width: 980px) 42vw, (min-width: 720px) 55vw, 92vw"
-                    priority={globalIndex === 0}
-                    loading={globalIndex === 0 ? undefined : globalIndex < 4 ? "eager" : "lazy"}
-                  />
+                  <button
+                    type="button"
+                    className="gallery-page__open"
+                    onClick={() => setActive(globalIndex)}
+                    aria-label={`${image.alt}を拡大表示`}
+                  >
+                    <Image
+                      src={image.src}
+                      alt=""
+                      width={image.width}
+                      height={image.height}
+                      sizes="(min-width: 980px) 42vw, (min-width: 720px) 55vw, 92vw"
+                      priority={globalIndex === 0}
+                      loading={globalIndex === 0 ? undefined : globalIndex < 4 ? "eager" : "lazy"}
+                    />
+                  </button>
                 </figure>
               );
             })}
@@ -73,6 +82,7 @@ export function GalleryBoard() {
           </button>
         </div>
       ) : null}
+      <GalleryLightbox index={active} onClose={() => setActive(null)} onIndexChange={setActive} />
     </>
   );
 }
