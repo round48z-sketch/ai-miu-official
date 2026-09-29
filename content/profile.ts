@@ -17,9 +17,9 @@ export const profile = {
     { label: "拠点", value: "日本" },
   ],
   image: {
-    src: "/images/profile/profile.jpg",
-    alt: "ピンクの衣装でハートを作るAIみう",
-    width: 711,
-    height: 1024,
+    src: "/images/profile/profile1.jpg",
+    alt: "桜の前でハートを作るAIみう",
+    width: 1122,
+    height: 1402,
   },
 } as const;
