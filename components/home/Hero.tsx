@@ -3,7 +3,7 @@ import { Aura } from "@/components/Aura";
 import { profile } from "@/content/profile";
 import { snsLinks } from "@/content/site";
 
-const heroSns = snsLinks.filter((item) => item.href);
+const heroSns = snsLinks.filter((item) => item.href && item.name !== "Pinterest");
 
 export function Hero() {
   return (

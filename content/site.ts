@@ -23,7 +23,7 @@ export const navItems = [
 export const snsLinks = [
   { name: "X", handle: "@miu_4519", href: "https://x.com/miu_4519" },
   { name: "TikTok", handle: "@miu_4519", href: "https://www.tiktok.com/@miu_4519" },
-  { name: "Pinterest", handle: "準備中", href: null },
+  { name: "Pinterest", handle: "@miu_ai54", href: "https://jp.pinterest.com/miu_ai54/" },
   { name: "Spotify", handle: "AIみう / miu", href: "https://open.spotify.com/artist/1R4C6DHAIVCRrwCptYNqNw" },
 ] as const;
 

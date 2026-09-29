@@ -6,7 +6,7 @@ import { snsLinks } from "@/content/site";
 const snsMeta: Record<string, { blurb: string; action: string }> = {
   X: { blurb: "日常と、みうのいま。", action: "Follow" },
   TikTok: { blurb: "動画で、みうと会おう。", action: "Watch" },
-  Pinterest: { blurb: "公開まで、もう少しお待ちください。", action: "Coming Soon" },
+  Pinterest: { blurb: "写真と、みうの世界観を。", action: "View" },
   Spotify: { blurb: "楽曲を、いつでも。", action: "Listen" },
 };
 
