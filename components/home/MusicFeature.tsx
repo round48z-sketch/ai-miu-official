@@ -4,20 +4,25 @@ import { SectionHead } from "@/components/NewsList";
 import { TextLink } from "@/components/TextLink";
 import { getFeaturedTrack, tracks, type StreamingLink } from "@/content/music";
 
-export function StreamingLinks({ links }: { links: StreamingLink[] }) {
+export function StreamingLinks({
+  links,
+  compact = false,
+}: {
+  links: StreamingLink[];
+  compact?: boolean;
+}) {
   return (
-    <ul className="stream-links">
+    <ul className={compact ? "stream-links stream-links--compact" : "stream-links"}>
       {links.map((link) => (
         <li key={link.name}>
-          {link.href ? (
+          {compact ? (
+            <a className="stream-links__mini" href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.name}
+            </a>
+          ) : (
             <TextLink href={link.href} className="btn" external>
               {link.name}
             </TextLink>
-          ) : (
-            <span className="btn is-soon">
-              {link.name}
-              <small>準備中</small>
-            </span>
           )}
         </li>
       ))}
@@ -69,6 +74,7 @@ export function MusicFeature() {
               <div>
                 <h3>{track.title}</h3>
                 <p>{track.releasedOn}</p>
+                <StreamingLinks links={track.streaming} compact />
               </div>
             </article>
           ))}

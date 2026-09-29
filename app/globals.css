@@ -1303,14 +1303,35 @@ h3 {
   transform: translateY(-2px);
 }
 
-.stream-links__soon {
-  color: var(--muted);
-  font-size: 13px;
+.stream-links--compact {
+  gap: 8px 8px;
+  margin-top: 10px;
 }
 
-.stream-links__soon small {
-  margin-left: 8px;
-  font-size: 11px;
+.stream-links__mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(233, 106, 155, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--rose-deep);
+  font-family: var(--display);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.stream-links__mini:hover {
+  background: rgba(255, 243, 248, 0.96);
+  border-color: rgba(216, 90, 140, 0.5);
+  color: var(--rose);
 }
 
 .music-rest {
@@ -1324,7 +1345,7 @@ h3 {
   display: grid;
   grid-template-columns: 96px 1fr;
   gap: 18px;
-  align-items: center;
+  align-items: start;
 }
 
 .music-rest__jacket {
