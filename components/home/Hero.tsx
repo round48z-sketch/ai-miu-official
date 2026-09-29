@@ -9,8 +9,8 @@ export function Hero() {
   return (
     <section className="hero" aria-label="メインビジュアル">
       <Image
-        src="/images/hero/hero.jpg"
-        alt="石段に座って微笑むAIみう"
+        src="/images/hero/hero-main.jpg"
+        alt="ピンクの衣装でピースをして微笑むAIみう"
         fill
         priority
         sizes="100vw"
