@@ -20,15 +20,11 @@ export function Footer() {
             ))}
           </nav>
           <nav aria-label="SNS">
-            {snsLinks.map((item) =>
-              item.href ? (
-                <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer">
-                  {item.name}
-                </a>
-              ) : (
-                <span key={item.name}>{item.name}</span>
-              ),
-            )}
+            {snsLinks.map((item) => (
+              <a key={item.name} href={item.href} target="_blank" rel="noopener noreferrer">
+                {item.name}
+              </a>
+            ))}
           </nav>
         </div>
       </div>
