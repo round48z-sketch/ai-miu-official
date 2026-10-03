@@ -27,6 +27,8 @@ export const snsLinks = [
   { name: "Spotify", handle: "AIみう / miu", href: "https://open.spotify.com/artist/1R4C6DHAIVCRrwCptYNqNw" },
 ] as const;
 
+export const officialSiteUrl = "https://ai-miu.com";
+
 export function getSiteUrl() {
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
@@ -34,5 +36,5 @@ export function getSiteUrl() {
   if (process.env.NODE_ENV !== "production") {
     return "http://localhost:3000";
   }
-  return "https://ai-miu-official.vercel.app";
+  return officialSiteUrl;
 }

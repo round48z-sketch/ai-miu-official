@@ -3,7 +3,7 @@ import { Cormorant_Garamond, Hina_Mincho } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
-import { getSiteUrl, siteConfig } from "@/content/site";
+import { officialSiteUrl, siteConfig } from "@/content/site";
 import { buildJsonLd } from "@/lib/metadata";
 import "./globals.css";
 
@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
+  metadataBase: new URL(officialSiteUrl),
   title: {
     default: `${siteConfig.name}｜${siteConfig.tagline}`,
     template: `%s｜${siteConfig.name}`,
