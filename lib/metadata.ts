@@ -17,6 +17,7 @@ export function buildMetadata({
   const siteUrl = getSiteUrl();
   const url = `${siteUrl}${path}`;
   const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
+  const isDefaultOg = image === siteConfig.defaultOgImage;
 
   return {
     title,
@@ -32,8 +33,7 @@ export function buildMetadata({
       images: [
         {
           url: imageUrl,
-          width: 1536,
-          height: 1024,
+          ...(isDefaultOg ? { width: 1152, height: 1728 } : {}),
           alt: title,
         },
       ],

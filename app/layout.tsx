@@ -39,6 +39,18 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     type: "website",
+    images: [
+      {
+        url: siteConfig.defaultOgImage,
+        width: 1152,
+        height: 1728,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [siteConfig.defaultOgImage],
   },
   robots: {
     index: true,
