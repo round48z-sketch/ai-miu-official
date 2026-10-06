@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NewsList } from "@/components/NewsList";
 import { PageIntro } from "@/components/PageIntro";
-import { newsItems } from "@/content/news";
+import { NEWS_PAGE_COUNT, getLatestNews } from "@/content/news";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
@@ -15,7 +15,7 @@ export default function NewsPage() {
     <article className="subpage">
       <div className="container">
         <PageIntro en="News" ja="お知らせ" lead="みうの最新情報をお届けします。" />
-        <NewsList items={newsItems} />
+        <NewsList items={getLatestNews(NEWS_PAGE_COUNT)} />
       </div>
     </article>
   );

@@ -14,9 +14,20 @@ export function NewsList({ items }: { items: NewsItem[] }) {
           </>
         );
 
+        const isExternal = Boolean(item.href?.startsWith("http"));
+
         return (
           <li key={item.slug}>
-            {item.href ? (
+            {item.href && isExternal ? (
+              <a
+                href={item.href}
+                className="news-list__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {inner}
+              </a>
+            ) : item.href ? (
               <Link href={item.href} className="news-list__link">
                 {inner}
               </Link>

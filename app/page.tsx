@@ -8,7 +8,7 @@ import { ProfileTeaser } from "@/components/home/ProfileTeaser";
 import { SnsSection } from "@/components/home/SnsSection";
 import { NewsList, SectionHead } from "@/components/NewsList";
 import { Reveal } from "@/components/Reveal";
-import { getLatestNews } from "@/content/news";
+import { NEWS_HOME_COUNT, getLatestNews } from "@/content/news";
 import { siteConfig } from "@/content/site";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const latest = getLatestNews(3);
+  const latest = getLatestNews(NEWS_HOME_COUNT);
 
   return (
     <>
